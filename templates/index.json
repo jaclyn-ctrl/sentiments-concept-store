@@ -6,7 +6,8 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
     "hero_irjTFL": {
       "type": "hero",
@@ -45,6 +46,7 @@
       "settings": {
         "media_type_1": "image",
         "media_type_2": "image",
+        "image_2": "shopify://shop_images/Homepaage_background.png",
         "link": "shopify://collections",
         "open_in_new_tab": false,
         "content_direction": "column",
@@ -233,6 +235,7 @@
           "static": true,
           "settings": {
             "media_type": "image",
+            "link": "",
             "video_loop": true,
             "video_autoplay": false,
             "image_position": "cover",
@@ -313,6 +316,7 @@
       },
       "name": "t:names.featured_product",
       "settings": {
+        "product": "",
         "layout": "media-left",
         "color_scheme": "scheme-2",
         "padding-block-start": 0,
@@ -328,6 +332,7 @@
           "static": true,
           "settings": {
             "media_type": "image",
+            "link": "",
             "video_loop": true,
             "video_autoplay": false,
             "image_position": "cover",
@@ -408,6 +413,7 @@
       },
       "name": "t:names.featured_product",
       "settings": {
+        "product": "",
         "layout": "media-right",
         "color_scheme": "scheme-2",
         "padding-block-start": 0,
@@ -519,6 +525,7 @@
               "type": "_product-card-group",
               "name": "t:names.group",
               "settings": {
+                "link": "",
                 "open_in_new_tab": false,
                 "content_direction": "column",
                 "vertical_on_mobile": true,
@@ -705,6 +712,7 @@
       },
       "name": "t:names.collections_grid",
       "settings": {
+        "collection_list": [],
         "layout_type": "grid",
         "carousel_on_mobile": true,
         "columns": 3,
