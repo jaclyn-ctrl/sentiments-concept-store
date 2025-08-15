@@ -1,0 +1,178 @@
+{{ 'custom-homepage.js' | asset_url | script_tag }}
+
+<div class="custom-homepage">
+  <!-- Hero Section -->
+  <section class="custom-hero">
+    {% if section.settings.hero_image %}
+      <img 
+        src="{{ section.settings.hero_image | image_url: width: 2400 }}"
+        alt="{{ section.settings.hero_image.alt | escape }}"
+        class="custom-hero__background"
+        loading="eager"
+        fetchpriority="high"
+      >
+    {% endif %}
+    
+    <div class="custom-hero__overlay"></div>
+    
+    <div class="custom-hero__content">
+      {% if section.settings.hero_title %}
+        <h1 class="custom-hero__title">{{ section.settings.hero_title }}</h1>
+      {% endif %}
+      
+      {% if section.settings.hero_text %}
+        <div class="custom-hero__text">
+          {{ section.settings.hero_text }}
+        </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- Brand Philosophy Section -->
+  <section class="parallax-section">
+    <div class="parallax-section__content">
+      {% if section.settings.philosophy_text %}
+        <div class="parallax-section__text">
+          {{ section.settings.philosophy_text }}
+        </div>
+      {% endif %}
+      
+      {% if section.settings.brand_name %}
+        <h2 class="sentiments-title">{{ section.settings.brand_name }}</h2>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- Additional Content Sections -->
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'content_section' %}
+        <section class="parallax-section" {{ block.shopify_attributes }}>
+          <div class="parallax-section__content">
+            {% if block.settings.title %}
+              <h2 class="parallax-section__title">{{ block.settings.title }}</h2>
+            {% endif %}
+            
+            {% if block.settings.text %}
+              <div class="parallax-section__text">
+                {{ block.settings.text }}
+              </div>
+            {% endif %}
+            
+            {% if block.settings.button_label and block.settings.button_link %}
+              <a href="{{ block.settings.button_link }}" class="button button--primary">
+                {{ block.settings.button_label }}
+              </a>
+            {% endif %}
+          </div>
+        </section>
+    {% endcase %}
+  {% endfor %}
+</div>
+
+<style>
+  .custom-homepage {
+    position: relative;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Custom Homepage",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero Section"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Background Image",
+      "info": "Recommended: 2400x1600px for best quality"
+    },
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Hero Title",
+      "default": "SENTIMENTS"
+    },
+    {
+      "type": "richtext",
+      "id": "hero_text",
+      "label": "Hero Text",
+      "default": "<p>We believe a brand is more than a name. It is a feeling — an echo of something personal yet shared.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Brand Philosophy"
+    },
+    {
+      "type": "richtext",
+      "id": "philosophy_text",
+      "label": "Philosophy Text",
+      "default": "<p>We believe a brand is more than a name. It is a feeling — an echo of something personal yet shared. We create not to fill space, but to leave an imprint. Every product begins as a blank canvas, shaped by instinct, sharpened by intention, and brought to life with a story at its core. We live at the crossroads of art and commerce, where boundaries dissolve and objects take on a second life. A cup becomes a love letter. A jacket becomes a keepsake. A simple thing becomes a vessel for something bigger. The everyday deserves poetry. The ordinary can be transformed into the unforgettable. We design to stir conversation, provoke thought, and exist with a point of view too bold to fade into the background. We are not here to mimic what's been done. We are here to shape what could be felt. To make things that matter — things that will be</p>"
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand Name",
+      "default": "SENTIMENTS"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "content_section",
+      "name": "Content Section",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Section Title"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Section Text"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Homepage",
+      "blocks": [
+        {
+          "type": "content_section",
+          "settings": {
+            "title": "Our Story",
+            "text": "<p>Discover the philosophy behind our carefully curated collection.</p>",
+            "button_label": "Learn More",
+            "button_link": "/pages/about"
+          }
+        },
+        {
+          "type": "content_section",
+          "settings": {
+            "title": "Products",
+            "text": "<p>Explore our latest collection of thoughtfully designed pieces.</p>",
+            "button_label": "Shop Now",
+            "button_link": "/collections/all"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
