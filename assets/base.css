@@ -1,10 +1,7 @@
 /* Custom Font Declaration */
 @font-face {
-  font-family: 'PPMondwest';
-  src: url("./PPMondwest-Regular.woff") format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+  font-family: "PPMondwest";
+  src: url("{{ 'PPMondwest-Regular.woff' | asset_url }}") format("woff");
 }
 
 * {
